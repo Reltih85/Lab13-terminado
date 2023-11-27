@@ -19,10 +19,9 @@ return new class extends Migration
             $table->string("fecha_ingreso");
             $table->string("precio_compra");
             $table->string("precio_venta");
-            $table->unsignedBigInteger("categorias_id");
-            $table->foreign("categorias_id")->references("id")->on("categorias");
-            $table->unsignedBigInteger("sedes_id");
-            $table->foreign("sedes_id")->references("id")->on("sedes");
+            $table->string("ruta");
+            $table->unsignedBigInteger("user_id");
+            $table->foreign("user_id")->references("id")->on("users");
             $table->timestamps();
         });
     }

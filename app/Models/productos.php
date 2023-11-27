@@ -28,4 +28,8 @@ class productos extends Model
         {
             return $this->hasMany(registros::class);
         }
+    public function Users()
+        {
+            return $this->belongsTo(User::class);
+        }
 }

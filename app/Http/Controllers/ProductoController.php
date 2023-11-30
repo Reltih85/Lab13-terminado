@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\productos;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use App\Models\Comentario;
+
 class ProductoController extends Controller
 {
     public function index()
@@ -66,4 +68,19 @@ class ProductoController extends Controller
         }
     }
 }
+    public function subirComentario(Request $request)
+    {
+        if ($request->comentario){
+            $id = auth()->user()->id;
+            $comentario = new Comentario;
+            $comentario->user_id = $id;
+            $comentario->productos_id = $request->id_producto;
+            $comentario->comentario = $request->comentario;
+            $comentario->estado = 1;
+            $comentario->save();
+            return redirect('/home');
+        }
+    }
+
+
 }

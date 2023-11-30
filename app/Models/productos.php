@@ -30,9 +30,9 @@ class productos extends Model
         }
     public function Users()
         {
-            return $this->belongsTo(User::class);
+            return $this->belongsTo(User::class,'user_id');
         }
-    public function Comentarios()
+    public function Comentario()
         {
             return $this->hasMany(Comentario::class);
         }

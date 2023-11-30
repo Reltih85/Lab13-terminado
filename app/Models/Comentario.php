@@ -12,7 +12,7 @@ class Comentario extends Model
         {
             return $this->belongsTo(User::class);
         }
-    public function Producto()
+    public function Productos()
         {
             return $this->belongsTo(productos::class);
         }

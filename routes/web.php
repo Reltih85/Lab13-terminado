@@ -24,3 +24,4 @@ Route::get('/productos', [App\Http\Controllers\ProductoController::class, 'index
 Route::post('/subirProducto', [App\Http\Controllers\ProductoController::class, 'subirProducto'])->name('subirProducto');
 Route::get('/producto/{ruta}', [App\Http\Controllers\ProductoController::class, 'mostrarProducto']);
 Route::post('/eliminarProducto', [App\Http\Controllers\ProductoController::class, 'eliminarProducto'])->name('eliminarProducto');
+Route::post('/subirComentario', [App\Http\Controllers\ProductoController::class, 'subirComentario'])->name('subirComentario');

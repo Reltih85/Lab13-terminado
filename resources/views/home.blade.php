@@ -2,22 +2,26 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row row-cols-3">
+        @forean(#productos as producto)
+        <div class="col">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
+                <img height="200" src="/producto/{{$producto->ruta}}" alt="Imagen">
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <p class="card-text">{{$producto->descripcion}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">{{$producto->User->name}}</small>
 
-                    {{ __('You are logged in!') }}
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
+        @endforeach
     </div>
+
 </div>
 @endsection
+            

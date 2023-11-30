@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $productos = Producto::with('User')
+              ->with('Comentario.User')
+              ->get();
+        return view('home', compact('productos'));
     }
 }

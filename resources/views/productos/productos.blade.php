@@ -32,13 +32,18 @@
                     <p class="card-text">{{$producto->nombre}}</p>
                     <p class="card-text">{{$producto->descripcion}}</p>
                     <div class="d-flex justify-content-between align-items-center">
+                        <form method="POST" action="{{ route( 'eliminarProducto' )}}">
+                        @csrf
+                        <div class="btn-group">
+                            <input type="hidden" name="id_producto" value="{{$producto->id}}">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">
+                            Eliminar
+                            </button>
+                        </div>
+                        </form>
                         <small class="text-muted">{{$producto->created_at}}</small>
-
                     </div>
-
-
                 </div>
-
             </div>
         </div>
         @endforeach

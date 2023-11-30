@@ -9,11 +9,18 @@ use Intervention\Image\Facades\Image;
 class ProductoController extends Controller
 {
     public function index()
-    {
-        $id = auth()->user()->id;
+        {
+        $user = auth()->user();
+
+        if ($user) {
+        $id = $user->id;
         $productos = productos::where('user_id', $id)->get();
         return view('productos.productos', compact('productos'));
-    }
+            } else {
+        // Manejar el caso en que el usuario no está autenticado
+        return redirect('/login'); // o cualquier otra acción que desees
+            }
+        }
     public function subirProducto(Request $request)
         {
             if ($request->hasFile('producto')){
@@ -40,4 +47,23 @@ class ProductoController extends Controller
         $file = Storage::disk('local')->get($ruta);
         return Image::make($file)->response();
     }
+    public function eliminarProducto(Request $request)
+{
+    if ($request->id_producto){
+        $producto = productos::find($request->id_producto);
+        
+        if ($producto) {
+            // Elimina el archivo asociado al producto
+            Storage::disk('local')->delete($producto->ruta);
+            
+            // Elimina el producto de la base de datos
+            $producto->delete();
+
+            return redirect('/productos');
+        } else {
+            // Manejo de error si el producto no se encuentra
+            return redirect('/productos')->with('error', 'Producto no encontrado');
+        }
+    }
+}
 }

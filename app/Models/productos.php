@@ -32,4 +32,9 @@ class productos extends Model
         {
             return $this->belongsTo(User::class);
         }
+    public function Comentarios()
+        {
+            return $this->hasMany(Comentario::class);
+        }
+
 }
